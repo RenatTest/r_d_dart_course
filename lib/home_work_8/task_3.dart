@@ -13,10 +13,10 @@ import 'package:word_generator/word_generator.dart';
 
 void main() {
   final wordGenerator = WordGenerator();
-  List<String> nounsList = wordGenerator.randomNouns(50);
+  final nounsList = wordGenerator.randomNouns(50);
   print(nounsList);
   print('---------------------------------------');
-  Map<String, int> nounsMap = {};
+  final nounsMap = <String, int>{};
   for (final word in nounsList) {
     nounsMap[word] = word.length;
   }
