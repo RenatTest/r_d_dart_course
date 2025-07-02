@@ -22,6 +22,22 @@ void main() {
   // 5
   final status = UserStatus.fromAge(22);
   print(status);
+  // 6
+  final product = Product.fromJson({
+    'title': 't-short',
+    'price': 30.0,
+    'id': 1,
+  });
+  print(product);
+  // 7
+  final figure = Rectangle.square(15.2);
+  print(figure);
+  // 8
+  var logger1 = Logger();
+  var logger2 = Logger();
+  logger1.log('App started');
+  logger2.log('User clicked button');
+  logger1.printLogs();
 }
 
 // Завдання 1 — User
@@ -155,4 +171,81 @@ class UserStatus {
 
   @override
   String toString() => '5. User status: $status';
+}
+
+// Factory part 2
+
+// Завдання 6: Фабричний конструктор із JSON
+// Створи клас Product, який має поля:
+// id (int)
+// title (String)
+// price (double)
+// Реалізуй фабричний конструктор:
+// factory Product.fromJson(Map<String, dynamic> json)
+// Цей конструктор повинен створювати об'єкт Product із JSON-мапи.
+
+class Product {
+  final int id;
+  final String title;
+  final double price;
+
+  Product({required this.id, required this.title, required this.price});
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(id: json['id'], title: json['title'], price: json['price']);
+  }
+
+  @override
+  String toString() => '6. Product name: $title, price: $price, id: $id';
+}
+
+// Завдання 7: Клас Rectangle
+// Створи клас Rectangle з полями:
+// width (double)
+// height (double)
+// Реалізуй фабричний конструктор Rectangle.square(double size), який створює квадрат (прямокутник зі стороною size).
+
+class Rectangle {
+  final double width;
+  final double height;
+
+  Rectangle(this.width, this.height);
+
+  factory Rectangle.square(double size) {
+    return Rectangle(size, size);
+  }
+
+  @override
+  String toString() => '7. Rectangle width: $width, height: $height';
+}
+
+// Завдання 8: Клас Logger (Singleton через фабричний конструктор)
+// Створи клас Logger, який:
+// Має приватний конструктор.
+// Реалізує патерн Singleton через фабричний конструктор — тобто при створенні завжди повертає один і той самий екземпляр.
+// Має метод log(String message), який додає повідомлення у внутрішній список.
+// Має метод printLogs(), який виводить усі повідомлення в консоль.
+
+class Logger {
+  static Logger? _instance; // Singleton-екземпляр
+  final List<String> _logs = []; // Лог-повідомлення
+
+  // приватний конструктор
+  Logger._internal();
+
+  // фабричний конструктор
+  factory Logger() {
+    _instance ??= Logger._internal();
+    return _instance!;
+  }
+
+  void log(String message) {
+    _logs.add('8. $message');
+  }
+
+  void printLogs() {
+    for (var msg in _logs) {
+      print(msg);
+    }
+  }
 }
