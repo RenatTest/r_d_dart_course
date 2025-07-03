@@ -349,3 +349,10 @@ class Connection {
   @override
   String toString() => 'Connection #$id';
 }
+
+// Gists:
+// https://dartpad.dev/?id=e7ae647a61dd96766c69efc2c268d5fb
+// https://dartpad.dev/?id=6d354d15b7e85537fb25bc329567b19e
+// https://dartpad.dev/?id=47a39cb812e77d9a58cf0cc7f3029815
+// https://dartpad.dev/?id=0e7087514265275b30e13737ce825e11
+// https://dartpad.dev/?id=f8dfb64077f09424a8358cfec02c9c2c
