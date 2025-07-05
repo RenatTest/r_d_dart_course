@@ -21,6 +21,7 @@ void main() {
   print('-------------------------------');
   numbers[50] = 1000000000;
   numbers.removeWhere((element) => [24, 45, 66, 88].contains(element));
+  // numbers.removeWhere([24, 45, 66, 88].contains);
 
   int sumElements3 = 0;
   for (var i = 0; i < numbers.length; i++) {
