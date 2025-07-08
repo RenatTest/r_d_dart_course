@@ -101,13 +101,14 @@ Future<void> getMethodsTime2() async {
 // Виміряйте та виведіть час виконання.
 
 Future<void> getFutures() async {
-  var futures = await Future.wait([
-    fetchName(),
-    fetchAge(),
-    getMethodsTime(fetchName),
-    getMethodsTime(fetchAge),
-  ]);
+  var futures = await Future.wait([fetchName(), fetchAge()]);
   print(futures.join('\n'));
+
+  var timeName = await getMethodsTime(fetchName);
+  print(timeName);
+
+  var timeAge = await getMethodsTime(fetchAge);
+  print(timeAge);
 }
 
 // Task 5: Зворотний відлік з затримкою
