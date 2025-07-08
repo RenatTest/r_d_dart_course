@@ -65,8 +65,8 @@ Future<void> createStreamController() async {
   controller.add('Hello');
   controller.add('World');
   controller.add('Dart');
+  controller.close();
   controller.stream
       .listen((word) => print('Value from stream: $word'))
       .onDone(() => print('Стрім завершено'));
-  controller.close();
 }
