@@ -4,6 +4,7 @@ void main() async {
   await getNumbersFromStreamFromIterable([1, 2, 3, 4, 5]);
   print('------------------ Task 6.2 --------------------');
   await getNumbersFromStreamListen([4, 3, 2, 1]);
+  await createCountDownStream(10, 1);
 }
 
 // Task 6: Стрім з чисел (fromIterable)
@@ -20,8 +21,27 @@ Future<void> getNumbersFromStreamFromIterable(List<int> numbers) async {
 }
 
 Future<void> getNumbersFromStreamListen(List<int> numbers) async {
-  Stream<int> streamNumbers = Stream.fromIterable(numbers);
-  streamNumbers.listen((number) {
+  Stream<int> streamNumbers2 = Stream.fromIterable(numbers);
+  streamNumbers2.listen((number) {
     print('number from list with listen method: $number');
   });
+}
+
+// Task 7: Зворотний відлік зі стріму (periodic)
+
+// Створіть Stream<int> за допомогою Stream.periodic, який генерує числа з затримкою в 1 секунду.
+// Обмежте відлік до 10 чисел за допомогою методу take.
+// Виведіть кожне число у консоль у форматі: "1...", "2...", "3...", ... "10...".
+
+Future<void> createCountDownStream(int number, int sec) async {
+  Stream<int> countDownStream = Stream.periodic(
+    Duration(seconds: sec),
+    (i) => i,
+  ).take(number);
+  await for (var number in countDownStream) {
+    if (number == 0) {
+      print('------------------ Task 7 --------------------');
+    }
+    print('Timer: ${number + 1} ...');
+  }
 }
