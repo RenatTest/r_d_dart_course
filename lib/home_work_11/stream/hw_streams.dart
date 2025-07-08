@@ -15,13 +15,13 @@ void main() async {
 Future<void> getNumbersFromStreamFromIterable(List<int> numbers) async {
   Stream<int> streamNumbers = Stream.fromIterable(numbers);
   await for (var number in streamNumbers) {
-    print('number from list with Stream.fromIterable: $number');
+    print('number from list with await for: $number');
   }
 }
 
 Future<void> getNumbersFromStreamListen(List<int> numbers) async {
   Stream<int> streamNumbers = Stream.fromIterable(numbers);
   streamNumbers.listen((number) {
-    print('number from list with Stream listen method: $number');
+    print('number from list with listen method: $number');
   });
 }
