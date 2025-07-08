@@ -44,11 +44,10 @@ Future<void> getNumbersFromStreamListen(List<int> numbers) async {
 Future<void> createCountDownStream(int number, int sec) async {
   Stream<int> countDownStream = Stream.periodic(
     Duration(seconds: sec),
-    (i) => i,
+    (i) => i + 1,
   ).take(number);
   await for (var number in countDownStream) {
-    if (number == 0) {}
-    print('Timer: ${number + 1} ...');
+    print('Timer: $number ...');
   }
 }
 
@@ -62,11 +61,11 @@ Future<void> createCountDownStream(int number, int sec) async {
 
 Future<void> createStreamController() async {
   final controller = StreamController<String>();
+  controller.stream
+      .listen((word) => print('Value from stream: $word'))
+      .onDone(() => print('Стрім завершено'));
   controller.add('Hello');
   controller.add('World');
   controller.add('Dart');
   controller.close();
-  controller.stream
-      .listen((word) => print('Value from stream: $word'))
-      .onDone(() => print('Стрім завершено'));
 }
