@@ -22,9 +22,13 @@ Future<void> getNumbersFromStreamFromIterable(List<int> numbers) async {
 
 Future<void> getNumbersFromStreamListen(List<int> numbers) async {
   Stream<int> streamNumbers2 = Stream.fromIterable(numbers);
-  streamNumbers2.listen((number) {
-    print('number from list with listen method: $number');
-  });
+  streamNumbers2
+      .listen((number) {
+        print('number from list with listen method: $number');
+      })
+      .onDone(() {
+        print('------------------ Task 7 --------------------');
+      });
 }
 
 // Task 7: Зворотний відлік зі стріму (periodic)
@@ -39,9 +43,7 @@ Future<void> createCountDownStream(int number, int sec) async {
     (i) => i,
   ).take(number);
   await for (var number in countDownStream) {
-    if (number == 0) {
-      print('------------------ Task 7 --------------------');
-    }
+    if (number == 0) {}
     print('Timer: ${number + 1} ...');
   }
 }
