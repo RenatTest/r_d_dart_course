@@ -1,21 +1,23 @@
 void main() async {
   // 1
-  // String resultName = await fetchName();
-  // print(resultName);
-  // print('--------------------------------------');
-  // // 2
-  // String resultAge = await fetchAge();
-  // print(resultAge);
-  // print('--------------------------------------');
-  // // 3.1
-  // String functionTime = await getMethodsTime(fetchAge);
-  // print(functionTime);
-  // // 3.2
-  // await getMethodsTime2();
-  // print('--------------------------------------');
-  // // 4
-  // await getFutures();
+  print('------------------ Task 1 --------------------');
+  String resultName = await fetchName();
+  print(resultName);
+  // 2
+  print('------------------ Task 2 --------------------');
+  String resultAge = await fetchAge();
+  print(resultAge);
+  // 3.1
+  print('------------------ Task 3 --------------------');
+  String functionTime = await getMethodsTime(fetchAge);
+  print(functionTime);
+  // 3.2
+  await getMethodsTime2();
+  // 4
+  print('------------------ Task 4 --------------------');
+  await getFutures();
   // 5
+  print('------------------ Task 5 --------------------');
   String timer = await delayedCountdown(5);
   print(timer);
 }
