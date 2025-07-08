@@ -2,14 +2,19 @@ void main() async {
   // 1
   String resultName = await fetchName();
   print(resultName);
+  print('--------------------------------------');
   // 2
   String resultAge = await fetchAge();
   print(resultAge);
+  print('--------------------------------------');
   // 3.1
   String functionTime = await getMethodsTime(fetchAge);
   print(functionTime);
   // 3.2
   await getMethodsTime2();
+  print('--------------------------------------');
+  // 4
+  await getFutures();
 }
 
 // Task 1: Асинхронне отримання імені
@@ -62,7 +67,7 @@ Future<String> getMethodsTime(Function func) async {
   stopwatch.start();
   await func();
   stopwatch.stop();
-  return 'Час виконання функції, що передана: ${(stopwatch.elapsedMilliseconds / 1000).toStringAsFixed(1)} сек.';
+  return 'Час виконання функції: ${(stopwatch.elapsedMilliseconds / 1000).toStringAsFixed(1)} сек.';
 }
 
 Future<void> getMethodsTime2() async {
@@ -81,4 +86,19 @@ Future<void> getMethodsTime2() async {
   print(
     'Час виконання функції fetchAge: ${(stopwatch2.elapsedMilliseconds / 1000).toStringAsFixed(1)} сек.',
   );
+}
+
+// Task 4: Паралельне виконання Future (Future.wait)
+
+// Виконайте методи fetchName() та fetchAge() паралельно за допомогою Future.wait.
+// Виміряйте та виведіть час виконання.
+
+Future<void> getFutures() async {
+  var futures = await Future.wait([
+    fetchName(),
+    fetchAge(),
+    getMethodsTime(fetchName),
+    getMethodsTime(fetchAge),
+  ]);
+  print(futures.join('\n'));
 }
