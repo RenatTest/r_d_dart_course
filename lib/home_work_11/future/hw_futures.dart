@@ -54,7 +54,9 @@ Future<String> fetchAge() async {
   switch (value) {
     case 1:
       return 'Мені $age рік';
-    case 2 || 3 || 4:
+    case 2:
+    case 3:
+    case 4:
       return 'Мені $age роки';
     default:
       return 'Мені $age років';
