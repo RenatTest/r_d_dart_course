@@ -5,6 +5,11 @@ void main() async {
   // 2
   String resultAge = await fetchAge();
   print(resultAge);
+  // 3.1
+  String functionTime = await getMethodsTime(fetchAge);
+  print(functionTime);
+  // 3.2
+  await getMethodsTime2();
 }
 
 // Task 1: Асинхронне отримання імені
@@ -44,4 +49,36 @@ Future<String> fetchAge() async {
     default:
       return 'Мені $age років';
   }
+}
+
+// Task 3: Послідовне виконання Future
+
+// Виконайте методи fetchName() та fetchAge() послідовно.
+// Виміряйте та виведіть час виконання обох методів.
+// Порада. Можете використати для виконання другого пункту клас https://api.flutter.dev/flutter/dart-core/Stopwatch-class.html
+
+Future<String> getMethodsTime(Function func) async {
+  final stopwatch = Stopwatch();
+  stopwatch.start();
+  await func();
+  stopwatch.stop();
+  return 'Час виконання функції, що передана: ${(stopwatch.elapsedMilliseconds / 1000).toStringAsFixed(1)} сек.';
+}
+
+Future<void> getMethodsTime2() async {
+  final stopwatch = Stopwatch();
+  stopwatch.start();
+  await fetchName();
+  stopwatch.stop();
+  print(
+    'Час виконання функції fetchName: ${(stopwatch.elapsedMilliseconds / 1000).toStringAsFixed(1)} сек.',
+  );
+
+  final stopwatch2 = Stopwatch();
+  stopwatch2.start();
+  await fetchAge();
+  stopwatch2.stop();
+  print(
+    'Час виконання функції fetchAge: ${(stopwatch2.elapsedMilliseconds / 1000).toStringAsFixed(1)} сек.',
+  );
 }
