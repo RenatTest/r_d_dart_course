@@ -18,7 +18,7 @@ void main() async {
 // Виведіть кожне значення з цього ж стріму, використовуючи метод listen.
 
 Future<void> getNumbersFromStreamFromIterable(List<int> numbers) async {
-  Stream<int> streamNumbers = Stream.fromIterable(numbers);
+  final streamNumbers = Stream.fromIterable(numbers);
   await for (var number in streamNumbers) {
     print('number from list with await for: $number');
   }
