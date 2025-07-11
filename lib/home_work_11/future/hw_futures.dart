@@ -47,20 +47,27 @@ Future<String> fetchAge() async {
   int value = age % 10;
   int twoValues = age % 100;
 
-  if (twoValues >= 11 && twoValues <= 14) {
-    return 'Мені $age років';
-  }
+  // if (twoValues >= 11 && twoValues <= 14) {
+  //   return 'Мені $age років';
+  // }
 
-  switch (value) {
-    case 1:
-      return 'Мені $age рік';
-    case 2:
-    case 3:
-    case 4:
-      return 'Мені $age роки';
-    default:
-      return 'Мені $age років';
-  }
+  // switch (value) {
+  //   case 1:
+  //     return 'Мені $age рік';
+  //   case 2:
+  //   case 3:
+  //   case 4:
+  //     return 'Мені $age роки';
+  //   default:
+  //     return 'Мені $age років';
+  // }
+
+  return switch ((twoValues, value)) {
+    (_, 1) => 'Мені $age рік',
+    (>= 11 && <= 14, _) => 'Мені $age років',
+    (_, 2) || (_, 3) || (_, 4) => 'Мені $age роки',
+    _ => 'Мені $age років',
+  };
 }
 
 // Task 3: Послідовне виконання Future
